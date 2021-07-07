@@ -1,3 +1,9 @@
+//Gate States
+//"Win" - Player robot has defeated all enemy-robots
+//  *Fight all enemy-robots
+//  *Defeat each enemy-robot
+//"Lose" - Player robot's health is zero or less
+
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 50;
 var playerAttack = 15;
@@ -84,9 +90,6 @@ var fight = function () {
     //Check player health
     var onemore = window.confirm("Another round?");
     console.log(onemore);
-    // if (onemore != true) {
-    //   break;
-    // }
   }
 }
 
