@@ -29,8 +29,9 @@ console.log(enemyNames[0]);
 console.log(enemyNames.length);
 
 for(var i = 0; i<enemyNames.length; i++) {
-  console.log("Loop "+(i+1))
   console.log(enemyNames[i]);
+  console.log("Loop " + (i + 1));
+  console.log(enemyNames[i] + " is at " + i + " index");
 }
 
 var round = 1
