@@ -17,18 +17,13 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-var enemyHealth = 50;
-var enemyAttack = 12;
-
-//Console Log
-
 var enemyNames = ["Roboto", "Amy Android", "Robo Trumble"];
 console.log(enemyNames);
 console.log(enemyNames[0]);
 
 console.log(enemyNames.length);
 
-for(var i = 0; i<enemyNames.length; i++) {
+for (var i = 0; i < enemyNames.length; i++) {
   console.log(enemyNames[i]);
   console.log("Loop " + (i + 1));
   console.log(enemyNames[i] + " is at " + i + " index");
@@ -36,28 +31,30 @@ for(var i = 0; i<enemyNames.length; i++) {
 
 var round = 1
 
-var fight = function () {
+var fight = function (enemyName) {
   window.alert("Welcome to Robot Gladiators " + playerName);
-  console.log("Today's battle will be between "+ playerName + " and " + enemyName + ".")
+  var enemyHealth = 50;
+  var enemyAttack = 12;
+  console.log("Today's battle will be between " + playerName + " and " + enemyNames[i] + ".")
   //Ask to skip
   var promptFight = window.confirm("Would you like to FIGHT (ok) or SKIP this battle (cancel)?")
   //Confirm Skip
-  if (promptFight === false){
-    playerMoney =- 2;
+  if (promptFight === false) {
+    playerMoney = - 2;
     console.log(playerMoney);
     return;
   }
-  else{
+  else {
     console.log(promptFight);
   }
-  console.log(enemyName + " Health");
+  console.log(enemyNames[i] + " Health");
   console.log(enemyHealth);
   console.log(playerName + " Health");
   console.log(playerHealth)
   window.alert("Let the Fight Begin!");
   onemore = true;
-//My loop is not re-evaluated with every pass. Why is that?
-  while (onemore === true && (playerHealth>0 && enemyHealth>0)){
+  //My loop is not re-evaluated with every pass. Why is that?
+  while (onemore === true && playerHealth > 0 && enemyHealth > 0) {
     //Attack Strength
     var playerAttackStrength = getRandomInt(playerAttack - 7, playerAttack);
     console.log(playerAttackStrength);
@@ -68,40 +65,45 @@ var fight = function () {
 
     //Enemy Attacked by player
     console.log("Round " + round);
-    enemyHealth = enemyHealth - playerAttackStrength;
+    // enemyHealth = enemyHealth - playerAttackStrength;
 
-    window.alert("The " + enemyName + " has " + enemyHealth + " health remaining. Your attack had a strength of " + playerAttackStrength + ".");
-    console.log("Enemy Health after Attack");
+    window.alert("The " + enemyNames[i] + " has " + enemyHealth + " health remaining. Your attack had a strength of " + playerAttackStrength + ".");
+    console.log(enemyNames[i] + " after Attack");
     console.log(enemyHealth);
     console.log("Attack Strength");
     console.log(playerAttackStrength);
-    if (enemyHealth <= 0) {
-      console.log(enemyName + " has died!");
-      break;
-    }
-    else {
-      console.log(enemyName + " still has " + enemyHealth + " health left.");
-    }
+
     //Player attacked by enemy
     playerHealth = playerHealth - enemyAttackStrength;
 
     window.alert(playerName + " has " + playerHealth + " health remaining. The enemy's attack had a strength of " + enemyAttackStrength + ".");
     console.log(playerName + " Health after Attack");
     console.log(playerHealth);
-    console.log(enemyName + " Attack Strength");
+    console.log(enemyNames[i] + " Attack Strength");
     console.log(enemyAttackStrength);
-    if (playerHealth === 0) {
+    if (playerHealth <= 0) {
       console.log(playerName + " died.");
-      break;
     }
     else {
       console.log(playerName + " survived the robot battle!");
     }
+    //The while loop is working, but it isn't getting down to the code where the died statement lives. How do I ensure this happens? Call it outside the loop?
+    if (enemyHealth <= 0) {
+      console.log(enemyNames[i] + " has died!");
+      // if EHealth <= 0 then send this message. After the message, then display enemyHealth
+    }
+    else {
+      console.log(enemyNames[i] + " still has " + enemyHealth + " health left.");
+    }
     round++;
     //Check player health
+
     var onemore = window.confirm("Another round?");
     console.log(onemore);
+    // return (enemyHealth && playerHealth);
   }
 }
 
-// fight();
+for (var i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i]);
+};
